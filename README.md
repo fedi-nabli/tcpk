@@ -1,10 +1,16 @@
 # TCPK
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-lightgreen.svg)](https://github.com/fedi-nabli/tcpk/blob/main/LICENSE)
+
 ## TCPK (Turing C/C++ Package Kitchen) Package Manager
 
 TCPK (Turing C/C++ Package Kitchen) is a Very light weight, easy and fast package manager to install C/C++ packages and compile sources when needed. Same package can be in multiple form and different languages.
 
 The main purpose of this package kitchen is to have simple C/C++ manager with possibility to post packages like npm or pnpm, and also provide functionality to support same algorithms and code base for different programming languages.
+
+## License
+
+License: [MIT License](https://github.com/fedi-nabli/tcpk/blob/main/LICENSE)
 
 ## Developers
 
