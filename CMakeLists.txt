@@ -13,5 +13,6 @@ set(TCPK_SOURCES
 )
 
 add_library(tcpkl STATIC ${TCPK_SOURCES})
-add_executable(tcpk src/main.cpp)
+add_executable(tcpk app/main.cpp)
+target_include_directories(tcpk PRIVATE src)
 target_link_libraries(tcpk tcpkl)
