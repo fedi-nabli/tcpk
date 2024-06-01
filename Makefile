@@ -3,12 +3,13 @@ INCLUDES = -I./src
 
 CC = g++
 FLAGS = -c -g
+CXX = -std=c++17
 
 all: ${OBJECTS}
-	$(CC) ./src/main.cpp ${INCLUDES} ${OBJECTS} -g -o ./bin/tcpk
+	$(CC) $(CXX) ./src/main.cpp ${INCLUDES} ${OBJECTS} -g -o ./bin/tcpk
 
 ./bin/os.o: ./src/os/os.cpp
-	$(CC) ./src/os/os.cpp ${INCLUDES} $(FLAGS) -o ./bin/os.o
+	$(CC) $(CXX) ./src/os/os.cpp ${INCLUDES} $(FLAGS) -o ./bin/os.o
 
 
 clean:
