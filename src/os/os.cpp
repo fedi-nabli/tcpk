@@ -1,7 +1,11 @@
 #include "os.hpp"
 
+#ifdef _WIN32
 #define _WIN32_WINNT 0x0501
 #include <windows.h>
+#else
+#include <sys/utsname.h>
+#endif
 
 #include <stdio.h>
 #include <string.h>
@@ -24,6 +28,7 @@ namespace tcpk
 
   std::string GetOSArch()
   {
+  #if defined(_WIN32)
     SYSTEM_INFO info;
     GetNativeSystemInfo(&info);
 
@@ -40,23 +45,41 @@ namespace tcpk
       case PROCESSOR_ARCHITECTURE_IA64:
         return "ia64";
     };
+#endif
+
+#if defined(__APPLE__) || defined(__linux__)
+  long ret = -1;
+  struct utsname un;
+
+  if (ret == -1)
+    ret = uname(&un);
+  if (ret != -1)
+  {
+    if (strlen(un.machine) == 4 && un.machine[0] == 'i' && un.machine[2] == '8' && un.machine[3] == '6')
+      return std::string("x86");
+    if (strcmp(un.machine, "amd64") == 0)
+      return std::string("x86_64");
+
+    return std::string(un.machine);
+  }
+#endif
 
     return "";
   }
 
   std::string GetOSType()
   {
-    #ifdef _WIN32
-      return "windows";
-    #endif
+  #ifdef _WIN32
+    return "windows";
+  #endif
 
-    #ifdef __APPLE__
-      return "macos";
-    #endif
+  #ifdef __APPLE__
+    return "macos";
+  #endif
 
-    #ifdef __linux__
-      return "linux";
-    #endif
+  #ifdef __linux__
+    return "linux";
+  #endif
 
     return "";
   }
